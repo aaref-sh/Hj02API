@@ -4,9 +4,11 @@ using RepositoryAndUOW.Core;
 using RepositoryAndUOW.Core.IRepositories;
 using RepositoryAndUOW.Core.Models;
 using RepositoryAndUOW.Core.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RepositoryAndUOW.API.Controllers;
 
+[Authorize (Roles =UserRoles.User)]
 [Route("api/[controller]")]
 [ApiController]
 public class UsersController : ControllerBase
