@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RepositoryAndUOW.EF
 {
-    public  class ApplicationDbContext : IdentityDbContext<IdentityUser>
+    public  class ApplicationDbContext : IdentityDbContext<User>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

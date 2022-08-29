@@ -14,7 +14,7 @@ public class UsersRepository : BaseRepository<User>, IUsersRepository
     {
     }
 
-    public List<Post> PostsOfUser(int userId)
+    public List<Post> PostsOfUser(string userId)
     {
         return Find(x => x.Id == userId,"Posts").Posts.ToList();
     }

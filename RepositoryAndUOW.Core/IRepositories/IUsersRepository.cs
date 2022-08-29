@@ -9,5 +9,5 @@ namespace RepositoryAndUOW.Core.IRepositories;
 
 public interface IUsersRepository : IBaseRepository<User>
 {
-    List<Post> PostsOfUser(int userId);
+    List<Post> PostsOfUser(string userId);
 }

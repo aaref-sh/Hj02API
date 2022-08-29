@@ -12,16 +12,19 @@ public class PostDTO
 {
     public int Id { get; set; }
     public UserDTO? User { get; set; }
-    public int UserId { get; set; }
+    public string UserId { get; set; }
+    public string UserName { get; set; }
     public PostState State { get; set; }
     public string Title { get; set; }
     public City City { get; set; }
     public string PostBody { get; set; }
+    public int Views { get; set; }
+    public int Likes { get; set; }
 
     public double Price { get; set; } = 0;
     public double? DiscountPrice { get; set; } = 0;
-    public DateTime Created { get; set; } = DateTime.Now;
-    public DateTime? Edited { get; set; } = null;
+    public string Created { get; set; }
+    public string Edited { get; set; }
     public ICollection<PictureDTO>? Pictures { get; set; }
     public ICollection<PropertyDTO>? Properties { get; set; }
 
@@ -47,21 +50,59 @@ public class PostDTO
         City = v.City;
         Price = v.Price;
         DiscountPrice = v.DiscountPrice;
-        Created = v.Created;
-        Edited = v.Edited;
+        Created = v.Created.ToString("yyyy/MM/dd HH:mm");
+        Edited = v.Edited?.ToString("yyyy/MM/dd HH:mm") ?? "";
         State = v.State;
         UserId = v.UserId;
+        UserName = v.User.FirstName + " " + v.User.LastName; 
         Pictures = pictures;
         Properties = properties;
-
+        Views = v.Views.Count;
+        Likes = v.Likes.Count;
 
     }
 
 }
 
+public class PostInListDTO
+{
+
+    public int Id { get; set; }
+    public UserDTO? User { get; set; }
+    public string UserId { get; set; }
+    public string UserName { get; set; }
+    public string Title { get; set; }
+    public City City { get; set; }
+    public int Views { get; set; }
+    public int Likes { get; set; }
+    public string Picture { get; set; }
+    public double Price { get; set; } = 0;
+    public double? DiscountPrice { get; set; } = 0;
+    public string Date { get; set; }
+
+    public PostInListDTO()
+    {
+
+    }
+    public PostInListDTO(Post v)
+    {
+        Id = v.Id;
+        Title = v.Title;
+        City = v.City;
+        Price = v.Price;
+        DiscountPrice = v.DiscountPrice;
+        Date = v.Edited?.ToString("yyyy/MM/dd HH:mm")??v.Created.ToString("yyyy/MM/dd HH:mm");
+        UserId = v.UserId;
+        UserName = v.User.FirstName + " " + v.User.LastName;
+        Views = v.Views.Count;
+        Likes = v.Likes.Count;
+        Picture = v.Pictures.Any()?v.Pictures.ElementAt(0).FullPath:"";
+    }
+}
+
 public class CreatePostDTO
 {
-    public int UserId { get; set; }
+    public string UserId { get; set; }
     public string Title { get; set; }
     public City City { get; set; }
     public string PostBody { get; set; }

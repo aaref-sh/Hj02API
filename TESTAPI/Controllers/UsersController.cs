@@ -18,45 +18,22 @@ public class UsersController : ControllerBase
     public UsersController(IUnitOfWork uow) => this.uow = uow;
 
     #region Users area
-    [HttpGet("UsersGetUserById")]
-    public IActionResult UsersGetById(int id) => Ok(new UserDTO(uow.Users.GetById(id)));
-    [HttpGet("UsersGetAll")]
-    public IActionResult UsersGetAll()
-    {
-        var users = uow.Users.GetAll();
-        List<UserDTO> res = new List<UserDTO>();
-        foreach (var user in users)
-            res.Add(new UserDTO(user));
-        return Ok(res);
-    }
 
-    [HttpGet("UsersGetByName")]
-    public IActionResult UsersGetByName(string name)
-    {
-        var user = new UserDTO(uow.Users.Find(x => x.FirstName.Contains(name), "Posts"));
 
-        return Ok(user);
-    }
     [HttpGet("UsersGetAllByName")]
     public IActionResult UsersGetAllByName(string name)
     {
-        var users = uow.Users.FindAll(x => x.FirstName.Contains(name), "Posts");
+        var users = uow.Users.FindAll(x => x.FirstName.Contains(name));
 
         List<UserDTO> res = new List<UserDTO>();
         foreach (var user in users)
             res.Add(new UserDTO(user));
         return Ok(res);
     }
-    [HttpPost("UsersAddOne")]
-    public IActionResult UsersAddOne(UserDTO entity)
-    {
-        User user = new User(entity);
-        uow.Users.Add(user);
-        uow.Complete();
-        return Ok( new UserDTO(user));
-    }
+
+
     [HttpGet("UsersGetPosts")]
-    public IActionResult UsersGetPosts(int id)
+    public IActionResult UsersGetPosts(string id)
     {
         var posts = uow.Users.PostsOfUser(id);
         List<PostDTO> res = new();
@@ -77,14 +54,14 @@ public class UsersController : ControllerBase
     {
         return Ok(new PostDTO(uow.Posts.Find(p => p.Id == id,"Pictures")));
     }
-
+    [AllowAnonymous]
     [HttpGet("PostsGetAll")]
     public IActionResult PostsGetAll()
     {
-        List<PostDTO> res = new();
-        var posts = uow.Posts.GetAll();
+        List<PostInListDTO> res = new();
+        var posts = uow.Posts.FindAll(x => true ,"User","Pictures","Views","Likes");
         foreach (var post in posts)
-            res.Add(new PostDTO(post));
+            res.Add(new PostInListDTO(post));
         return Ok(res);
     }
 
@@ -105,6 +82,7 @@ public class UsersController : ControllerBase
         return Ok(res);
     }
 
+    [AllowAnonymous]
     [HttpPost("PostsAddOne")]
     public IActionResult PostsAddOne(CreatePostDTO entity)
     {
@@ -174,9 +152,12 @@ public class UsersController : ControllerBase
     }
     #endregion
 
+    #region PropertyType area
     [HttpGet("PropertyTypesGetAll")]
     public IActionResult PropertyTypesGetAll()
     {
         return Ok(uow.PropertyTypes.GetAll());
     }
+    #endregion
+
 }

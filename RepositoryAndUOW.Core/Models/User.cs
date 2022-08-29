@@ -1,4 +1,5 @@
-﻿using RepositoryAndUOW.Core.DTO;
+﻿using Microsoft.AspNetCore.Identity;
+using RepositoryAndUOW.Core.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,13 +9,11 @@ using System.Threading.Tasks;
 
 namespace RepositoryAndUOW.Core.Models;
 
-public class User
+public class User : IdentityUser
 {
-    public int Id { get; set; }
     [Required, MaxLength(150)]
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public string PhoneNumber { get; set; }
     public int ReportedTimes { get; set; } = 0;
     public int IsActive { get; set; } = 0;
     public DateTime LastLogin { get; set; } = DateTime.Now;
