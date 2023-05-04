@@ -10,7 +10,7 @@ namespace RepositoryAndUOW.Core.DTO;
 
 public class PostDTO
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public UserDTO? User { get; set; }
     public string UserId { get; set; }
     public string UserName { get; set; }
@@ -27,6 +27,7 @@ public class PostDTO
     public string Edited { get; set; }
     public ICollection<PictureDTO>? Pictures { get; set; }
     public ICollection<PropertyDTO>? Properties { get; set; }
+    public ICollection<Tag>? Tags { get; set; }
 
     public PostDTO()
     {
@@ -67,7 +68,7 @@ public class PostDTO
 public class PostInListDTO
 {
 
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public UserDTO? User { get; set; }
     public string UserId { get; set; }
     public string UserName { get; set; }
@@ -79,6 +80,7 @@ public class PostInListDTO
     public double Price { get; set; } = 0;
     public double? DiscountPrice { get; set; } = 0;
     public string Date { get; set; }
+    public ICollection<Tag>? Tags { get; set; }
 
     public PostInListDTO()
     {
@@ -97,6 +99,11 @@ public class PostInListDTO
         Views = v.Views.Count;
         Likes = v.Likes.Count;
         Picture = v.Pictures.Any()?v.Pictures.ElementAt(0).FullPath:"";
+        if (v.Tags is not null)
+        {
+            Tags = v.Tags; 
+        }
+
     }
 }
 
@@ -109,4 +116,5 @@ public class CreatePostDTO
     public double Price { get; set; } = 0;
     public double? DiscountPrice { get; set; } = 0;
     public ICollection<PropertyDTO>? Properties { get; set; }
+    public ICollection<Tag>? Tags { get; set; }
 }

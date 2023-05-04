@@ -9,9 +9,9 @@ namespace RepositoryAndUOW.Core.DTO;
 
 public class PictureDTO
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string FullPath { get; set; }
-    public int PostId { get; set; }
+    public Guid PostId { get; set; }
 
     public PictureDTO() { }
     public static explicit operator PictureDTO(Picture v)

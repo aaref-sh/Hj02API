@@ -10,13 +10,13 @@ namespace RepositoryAndUOW.Core.Models;
 
 public class Comment
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     [ForeignKey("UserId")]
     public User User { get; set; }
     public string UserId { get; set; }
     [ForeignKey("PostId")]
     public Post Post { get; set; }
-    public int PostId { get; set; }
+    public Guid PostId { get; set; }
     public string Text { get; set; }
     public DateTime Date { get; set; } = DateTime.Now;
     public bool? Edited { get; set; } = false;

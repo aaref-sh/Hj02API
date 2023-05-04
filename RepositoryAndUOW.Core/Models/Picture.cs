@@ -10,10 +10,10 @@ namespace RepositoryAndUOW.Core.Models;
 public class Picture
 {
 
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string FullPath { get; set; }
     public Post Post { get; set; }
-    public int PostId { get; set; }
+    public Guid PostId { get; set; }
     public Picture(PictureDTO p)
     {
         FullPath = p.FullPath;

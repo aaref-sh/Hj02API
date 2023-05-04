@@ -9,9 +9,9 @@ namespace RepositoryAndUOW.Core.DTO;
 
 public class CommentDTO
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string UserId { get; set; }
-    public int PostId { get; set; }
+    public Guid PostId { get; set; }
     public string Text { get; set; }
     public DateTime Date { get; set; } = DateTime.Now;
     public bool? Edited { get; set; } = false;
@@ -34,6 +34,6 @@ public class CommentDTO
 public class CreateCommentDTO
 {
     public string UserId { get; set; }
-    public int PostId { get; set; }
+    public Guid PostId { get; set; }
     public string Text { get; set; }
 }

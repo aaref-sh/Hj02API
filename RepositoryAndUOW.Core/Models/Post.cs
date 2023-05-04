@@ -11,8 +11,8 @@ namespace RepositoryAndUOW.Core.Models;
 
 public class Post
 {
-    public int Id { get; set; }
-    public User User { get; set; }
+    public Guid Id { get; set; }
+    public User? User { get; set; }
     public string UserId { get; set; }
     public PostState State { get; set; } = PostState.Pinding;
 
@@ -25,20 +25,33 @@ public class Post
     public double? DiscountPrice { get; set; } = 0;
     public DateTime Created { get; set; } = DateTime.Now;
     public DateTime? Edited { get; set; } = null;
-    public ICollection<Picture> Pictures { get; set; }
+    public ICollection<Picture>? Pictures { get; set; }
     public ICollection<Property> Properties { get; set; }
-    public virtual ICollection<Like> Likes { get; set; }
-    public virtual ICollection<View> Views { get; set; }
-    public virtual ICollection<Comment> Comments { get; set; }
+    public virtual ICollection<Like>? Likes { get; set; }
+    public virtual ICollection<View>? Views { get; set; }
+    public virtual ICollection<Comment>? Comments { get; set; }
+    public virtual ICollection<Tag> Tags { get; set; }
 
 
     public Post() { }
     public Post(CreatePostDTO v)
     {
         List<Property> properties = new();
-
-        foreach (var p in v.Properties)
-            properties.Add(new Property(p));
+        List<Tag> tags = new();
+        if(v.Properties is not null)
+        {
+            foreach (var p in v.Properties)
+            { 
+                properties.Add(new Property(p)); 
+            }
+        }
+        if (v.Tags is not null)
+        {
+            foreach (var tag in v.Tags)
+            {
+                tags.Add(tag);
+            }
+        }
 
         UserId = v.UserId;
         Title = v.Title;
@@ -47,5 +60,6 @@ public class Post
         Price = v.Price;
         DiscountPrice = v.DiscountPrice;
         Properties = properties;
+        Tags = tags;
     }
 }

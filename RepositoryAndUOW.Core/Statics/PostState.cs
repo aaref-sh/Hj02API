@@ -10,6 +10,6 @@ public enum PostState
 {
     Pinding,
     Approved,
-    Unapproved,
+    Rejected,
     Deleted
 }

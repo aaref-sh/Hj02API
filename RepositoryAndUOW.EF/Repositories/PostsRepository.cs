@@ -15,5 +15,5 @@ public class PostsRepository : BaseRepository<Post>, IPostsRepository
     {
     }
 
-    public int ViewsCount(int id) => context.Posts.FirstOrDefault(x => x.Id == id).Views.Count;
+    public int ViewsCount(Guid id) => context.Posts.FirstOrDefault(x => x.Id == id).Views.Count;
 }

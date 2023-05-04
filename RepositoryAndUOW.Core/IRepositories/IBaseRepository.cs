@@ -10,7 +10,7 @@ namespace RepositoryAndUOW.Core.IRepositories;
 public interface IBaseRepository<T> 
     where T : class
 {
-    T GetById(int id);
+    T GetById(Guid id);
     IEnumerable<T> GetAll();
     T Find(Expression<Func<T,bool>> match,params string [] includes);
     IEnumerable<T> FindAll(Expression<Func<T,bool>> match,params string [] includes);

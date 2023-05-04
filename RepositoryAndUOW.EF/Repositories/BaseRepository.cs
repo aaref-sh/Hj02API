@@ -15,7 +15,7 @@ public class BaseRepository<T> : IBaseRepository<T>
     protected ApplicationDbContext context { get; set; }
     public BaseRepository(ApplicationDbContext context) 
         => this.context = context;
-    public T GetById(int id) 
+    public T GetById(Guid id) 
         => context.Set<T>().Find(id);
 
     public IEnumerable<T> GetAll() 

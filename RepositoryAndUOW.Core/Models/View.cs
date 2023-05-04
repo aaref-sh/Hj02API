@@ -8,7 +8,7 @@ namespace RepositoryAndUOW.Core.Models;
 
 public class View
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public Post Post { get; set; }
     public User User { get; set; }
 }

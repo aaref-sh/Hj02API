@@ -9,5 +9,5 @@ namespace RepositoryAndUOW.Core.IRepositories;
 
 public interface IPostsRepository : IBaseRepository<Post>
 {
-    int ViewsCount (int id);
+    int ViewsCount (Guid id);
 }

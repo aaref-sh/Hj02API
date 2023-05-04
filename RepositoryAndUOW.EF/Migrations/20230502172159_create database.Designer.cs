@@ -12,8 +12,8 @@ using RepositoryAndUOW.EF;
 namespace RepositoryAndUOW.EF.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220820193725_update_db_try_to_fix_string_to_int_error")]
-    partial class update_db_try_to_fix_string_to_int_error
+    [Migration("20230502172159_create database")]
+    partial class createdatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -159,11 +159,9 @@ namespace RepositoryAndUOW.EF.Migrations
 
             modelBuilder.Entity("RepositoryAndUOW.Core.Models.Comment", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -174,11 +172,11 @@ namespace RepositoryAndUOW.EF.Migrations
                     b.Property<bool?>("Edited")
                         .HasColumnType("bit");
 
-                    b.Property<int>("PostId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("PostId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("PostId1")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("PostId1")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -206,17 +204,15 @@ namespace RepositoryAndUOW.EF.Migrations
 
             modelBuilder.Entity("RepositoryAndUOW.Core.Models.Like", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    b.Property<Guid>("PostId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("PostId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PostId1")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("PostId1")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -240,18 +236,16 @@ namespace RepositoryAndUOW.EF.Migrations
 
             modelBuilder.Entity("RepositoryAndUOW.Core.Models.Picture", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("FullPath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PostId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("PostId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -262,11 +256,9 @@ namespace RepositoryAndUOW.EF.Migrations
 
             modelBuilder.Entity("RepositoryAndUOW.Core.Models.Post", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("City")
                         .HasColumnType("int");
@@ -311,14 +303,12 @@ namespace RepositoryAndUOW.EF.Migrations
 
             modelBuilder.Entity("RepositoryAndUOW.Core.Models.Property", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("PostId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("PostId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -337,11 +327,9 @@ namespace RepositoryAndUOW.EF.Migrations
 
             modelBuilder.Entity("RepositoryAndUOW.Core.Models.PropertyType", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -437,17 +425,15 @@ namespace RepositoryAndUOW.EF.Migrations
 
             modelBuilder.Entity("RepositoryAndUOW.Core.Models.View", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    b.Property<Guid>("PostId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("PostId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PostId1")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("PostId1")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UserId")
                         .IsRequired()

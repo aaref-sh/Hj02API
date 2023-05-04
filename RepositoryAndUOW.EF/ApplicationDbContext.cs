@@ -52,5 +52,6 @@ namespace RepositoryAndUOW.EF
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Property> Properties { get; set; }
         public DbSet<Picture> Pictures { get; set; }
+        public DbSet<Tag> Tags { get; set; }
     }
 }

@@ -13,7 +13,7 @@ public class PicturesController : ControllerBase
     private readonly IUnitOfWork uow;
     public PicturesController(IUnitOfWork uow) => this.uow = uow;
     [HttpGet("GetImageById")]
-    public IActionResult GetImageById(int id)
+    public IActionResult GetImageById(Guid id)
     {
         var pic = uow.Pictures.GetById(id).FullPath;
         var file = System.IO.File.ReadAllBytes(pic);
