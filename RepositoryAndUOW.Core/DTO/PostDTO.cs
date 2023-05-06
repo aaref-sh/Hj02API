@@ -58,8 +58,8 @@ public class PostDTO
         UserName = v.User.FirstName + " " + v.User.LastName; 
         Pictures = pictures;
         Properties = properties;
-        Views = v.Views.Count;
-        Likes = v.Likes.Count;
+        Views = v.Views?.Count ?? 0;
+        Likes = v.Likes?.Count ?? 0;
 
     }
 
@@ -96,10 +96,10 @@ public class PostInListDTO
         Date = v.Edited?.ToString("yyyy/MM/dd HH:mm")??v.Created.ToString("yyyy/MM/dd HH:mm");
         UserId = v.UserId;
         UserName = v.User.FirstName + " " + v.User.LastName;
-        Views = v.Views.Count;
-        Likes = v.Likes.Count;
-        Picture = v.Pictures.Any()?v.Pictures.ElementAt(0).FullPath:"";
-        if (v.Tags is not null)
+        Views = v.Views?.Count ?? 0;
+        Likes = v.Likes?.Count ?? 0;
+        Picture = v.Pictures?.ElementAt(0).FullPath ?? "";
+        if (v.Tags != null)
         {
             Tags = v.Tags; 
         }

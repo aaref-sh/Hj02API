@@ -15,13 +15,13 @@ public class BaseRepository<T> : IBaseRepository<T>
     protected ApplicationDbContext context { get; set; }
     public BaseRepository(ApplicationDbContext context) 
         => this.context = context;
-    public T GetById(Guid id) 
+    public T? GetById(Guid id) 
         => context.Set<T>().Find(id);
 
     public IEnumerable<T> GetAll() 
         => context.Set<T>().ToList();
 
-    public T Find(Expression<Func<T, bool>> match, params string[] includes)
+    public T? Find(Expression<Func<T, bool>> match, params string[] includes)
     {
         IQueryable<T> query = context.Set<T>();
         foreach (string include in includes)
